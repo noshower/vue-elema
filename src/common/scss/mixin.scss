@@ -1,0 +1,33 @@
+//一像素边框
+@mixin border-1px ($color) {
+	position:relative;
+	&:after{
+		display: block;
+		position:absolute;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		height: 1px;
+		background:$color;
+		content: '';
+		-webkit-transform: scaleY(0.5);
+		transform: scaleY(0.5);
+	}
+}
+@mixin border-none {
+	&:after {
+		display: none;
+	}
+}
+//将px转换成rem
+$baseFontSize:      37.5 !default;
+  @function pxToRem($px) {
+    @return $px / $baseFontSize * 1rem;
+}
+
+@mixin bg-image($url){
+	background-image:url($url+'@2x.png');
+	@media (-webkit-min-device-pixel-ratio:3),(min-device-pixel-ratio:3){
+		background-image:url($url+'@3x.png');
+	}
+}
